@@ -1,5 +1,3 @@
-from collections import deque
-
 import customtkinter as ctk
 
 from modules.compute import process_file_contents
