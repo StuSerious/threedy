@@ -58,23 +58,18 @@ class App(ctk.CTk):
 
     # compute changes
     def on_compute(self):
-        self.remove_comments = self.tabview.remove_comments_switch.get()
-        self.remove_mcodes = self.tabview.remove_mcodes_switch.get()
-        self.remove_fecodes = self.tabview.remove_fecodes_switch.get()
-        self.remove_nontravel = self.tabview.remove_nontravel_switch.get()
-        self.remove_lone_gs = self.tabview.remove_lone_gs_switch.get()
-        self.remove_whitelines = self.tabview.remove_whitelines_switch.get()
+        self.options = {
+            "remove_comments": self.tabview.remove_comments_switch,
+            "remove_mcodes": self.tabview.remove_mcodes_switch,
+            "remove_fecodes": self.tabview.remove_fecodes_switch,
+            "remove_nontravel": self.tabview.remove_nontravel_switch,
+            "remove_lone_gs": self.tabview.remove_lone_gs_switch,
+        }
 
-        self.terminal.newline("Vars OK. Starting compute...\n\n")
         if self.file_contents:
+            options_values = {key: switch.get() for key, switch in self.options.items()}
             self.file_contents, self.compute_time_taken = process_file_contents(
-                self.file_contents,
-                self.remove_comments,
-                self.remove_mcodes,
-                self.remove_fecodes,
-                self.remove_nontravel,
-                self.remove_lone_gs,
-                self.remove_whitelines,
+                self.file_contents, **options_values
             )
             self.terminal.newline(
                 "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"

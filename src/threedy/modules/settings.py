@@ -14,10 +14,9 @@ TERMINAL_TEXT_COLOR = "#90cf00"
 
 # patterns
 RE_PATTERNS = {
-    "rm-comments": r"\s*;.*$",
-    "rm-mcodes": r"^M.*$\n?",
-    "rm-fecodes": r"\s*[FE]\d*\.?\d*",
-    "rm-nontravel": r"^(?!G[10]).*$[\r\n]*",
-    "rm-lone-gs": r"^[G10]+$[\r\n]*",
-    "rm-whitelines": r"^\s*$\n?",
+    "remove_comments": r"\s*;.*$",
+    "remove_mcodes": r"^M.*$",
+    "remove_fecodes": r"\s*[FE]\d*\.?\d*",
+    "remove_nontravel": r"^(?!G[10]).*$[\r\n]*",
+    "remove_lone_gs": r"^[G10]+$[\r\n]*",
 }

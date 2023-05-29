@@ -7,44 +7,22 @@ import time
 from modules.settings import *
 
 
-def process_file_contents(
-    file_contents,
-    remove_comments=False,
-    remove_mcodes=False,
-    remove_fecodes=False,
-    remove_nontravel=False,
-    remove_lone_gs=False,
-    remove_whitelines=False,
-):
+def process_file_contents(file_contents, **options):
     timer = time.process_time()
 
-    if remove_comments:
-        file_contents = re.sub(
-            RE_PATTERNS["rm-comments"], "", file_contents, flags=re.MULTILINE
-        )
+    multiline_options = [
+        "remove_comments",
+        "remove_nontravel",
+        "remove_lone_gs",
+    ]
 
-    if remove_mcodes:
-        file_contents = re.sub(
-            RE_PATTERNS["rm-mcodes"], "", file_contents, flags=re.MULTILINE
-        )
+    for option, regex_pattern in RE_PATTERNS.items():
+        if options.get(option, False):
+            flags = re.MULTILINE if option in multiline_options else 0
+            file_contents = re.sub(regex_pattern, "", file_contents, flags=flags)
 
-    if remove_fecodes:
-        file_contents = re.sub(RE_PATTERNS["rm-fecodes"], "", file_contents)
-
-    if remove_nontravel:
-        file_contents = re.sub(
-            RE_PATTERNS["rm-nontravel"], "", file_contents, flags=re.MULTILINE
-        )
-
-    if remove_lone_gs:
-        file_contents = re.sub(
-            RE_PATTERNS["rm-lone-gs"], "", file_contents, flags=re.MULTILINE
-        )
-
-    if remove_whitelines:
-        file_contents = re.sub(
-            RE_PATTERNS["rm-whitelines"], "", file_contents, flags=re.MULTILINE
-        )
+    # Remove empty lines after processing
+    file_contents = re.sub(r"^\s*$\n?", "", file_contents, flags=re.MULTILINE)
 
     elapsed_time = time.process_time() - timer
 
