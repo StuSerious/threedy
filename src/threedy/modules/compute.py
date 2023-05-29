@@ -1,28 +1,48 @@
-# ------------------------------------------------------------------------------------------------ #
-# *                                         compute module                                       * #
-# ------------------------------------------------------------------------------------------------ #
 import re  # hate that I have to do this
 import time
 
 from modules.settings import *
 
 
-def process_file_contents(file_contents, **options):
+def process_file_contents(
+    file_contents,
+    remove_comments=False,
+    remove_mcodes=False,
+    remove_fecodes=False,
+    remove_nontravel=False,
+    remove_lone_gs=False,
+    remove_coordname=False,
+):
     timer = time.process_time()
 
-    multiline_options = [
-        "remove_comments",
-        "remove_nontravel",
-        "remove_lone_gs",
-    ]
+    if remove_comments:
+        file_contents = re.sub(
+            RE_PATTERNS["remove_comments"], "", file_contents, flags=re.MULTILINE
+        )
 
-    for option, regex_pattern in RE_PATTERNS.items():
-        if options.get(option, False):
-            flags = re.MULTILINE if option in multiline_options else 0
-            file_contents = re.sub(regex_pattern, "", file_contents, flags=flags)
+    if remove_mcodes:
+        file_contents = re.sub(
+            RE_PATTERNS["remove_mcodes"], "", file_contents, flags=re.MULTILINE
+        )
 
-    # Remove empty lines after processing
-    file_contents = re.sub(r"^\s*$\n?", "", file_contents, flags=re.MULTILINE)
+    if remove_fecodes:
+        file_contents = re.sub(RE_PATTERNS["remove_fecodes"], "", file_contents)
+
+    if remove_nontravel:
+        file_contents = re.sub(
+            RE_PATTERNS["remove_nontravel"], "", file_contents, flags=re.MULTILINE
+        )
+
+    if remove_lone_gs:
+        file_contents = re.sub(
+            RE_PATTERNS["remove_lone_gs"], "", file_contents, flags=re.MULTILINE
+        )
+
+    if remove_coordname:
+        file_contents = re.sub(
+            RE_PATTERNS["remove_coordname"], r"\2 \3 \4 \1\5", file_contents
+        )
+        file_contents = re.sub(r"G", "", file_contents)
 
     elapsed_time = time.process_time() - timer
 

@@ -33,32 +33,101 @@ class Tabview(ctk.CTkTabview):
         # defaults
         self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
 
-        # configure switches
-        self.switch_configs = [
-            ("Remove Comments", "remove_comments_switch"),
-            ("Remove M-Codes", "remove_mcodes_switch"),
-            ("Remove F/E-Codes", "remove_fecodes_switch"),
-            ("Keep only G0 & G1 moves", "remove_nontravel_switch"),
-            ("Remove lines with lonely G0/G1s", "remove_lone_gs_switch"),
-        ]
+        # rm comments
+        self.remove_comments_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove Comments",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_comments_switch.grid(
+            row=0,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
 
-        # create switches
-        for row, (text, switch_attr) in enumerate(self.switch_configs):
-            switch = ctk.CTkSwitch(
-                self.tab("G-Code Tools"),
-                text=text,
-                font=self.normal_font,
-                onvalue=True,
-                offvalue=False,
-            )
-            setattr(self, switch_attr, switch)
-            switch.grid(
-                row=row,
-                column=1,
-                padx=PADDING["medium"],
-                pady=PADDING["medium"],
-                sticky="W",
-            )
+        # rm M-Codes
+        self.remove_mcodes_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove M-Codes",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_mcodes_switch.grid(
+            row=1,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
+
+        # rm FE-Codes
+        self.remove_fecodes_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove F/E-Codes",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_fecodes_switch.grid(
+            row=2,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
+
+        # remove non trafel G-Codes (keep only G0 & G1 moves)
+        self.remove_nontravel_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Keep only G0 & G1 moves",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_nontravel_switch.grid(
+            row=3,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
+
+        # remove lonely G1s
+        self.remove_lone_gs_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove lines with lonely G0/G1s",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_lone_gs_switch.grid(
+            row=4,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
+
+        # remove lonely G1s
+        self.remove_coordname_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove coordinate names",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_coordname_switch.grid(
+            row=5,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
 
     def focused_tab(self):
         return self.get()

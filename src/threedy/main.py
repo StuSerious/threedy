@@ -64,6 +64,7 @@ class App(ctk.CTk):
             "remove_fecodes": self.tabview.remove_fecodes_switch,
             "remove_nontravel": self.tabview.remove_nontravel_switch,
             "remove_lone_gs": self.tabview.remove_lone_gs_switch,
+            "remove_coordname": self.tabview.remove_coordname_switch,
         }
 
         if self.file_contents:
