@@ -16,7 +16,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        self.iconbitmap("src/threedy/resources/logo.ico")
+        # self.iconbitmap("src/threedy/resources/logo.ico")
         self.title("threedy")
 
         # setup grid
