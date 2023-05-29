@@ -18,5 +18,6 @@ RE_PATTERNS = {
     "rm-mcodes": r"^M.*$\n?",
     "rm-fecodes": r"\s*[FE]\d*\.?\d*",
     "rm-nontravel": r"^(?!G[10]).*$[\r\n]*",
+    "rm-lone-gs": r"^[G10]+$[\r\n]*",
     "rm-whitelines": r"^\s*$\n?",
 }

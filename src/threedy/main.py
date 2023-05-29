@@ -62,21 +62,25 @@ class App(ctk.CTk):
         self.remove_mcodes = self.tabview.remove_mcodes_switch.get()
         self.remove_fecodes = self.tabview.remove_fecodes_switch.get()
         self.remove_nontravel = self.tabview.remove_nontravel_switch.get()
+        self.remove_lone_gs = self.tabview.remove_lone_gs_switch.get()
         self.remove_whitelines = self.tabview.remove_whitelines_switch.get()
 
-        self.terminal.newline("Vars OK. Compute started...\n\n")
-
-        self.file_contents, self.compute_time_taken = process_file_contents(
-            self.file_contents,
-            self.remove_comments,
-            self.remove_mcodes,
-            self.remove_fecodes,
-            self.remove_nontravel,
-            self.remove_whitelines,
-        )
-        self.terminal.newline(
-            "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
-        )
+        self.terminal.newline("Vars OK. Starting compute...\n\n")
+        if self.file_contents:
+            self.file_contents, self.compute_time_taken = process_file_contents(
+                self.file_contents,
+                self.remove_comments,
+                self.remove_mcodes,
+                self.remove_fecodes,
+                self.remove_nontravel,
+                self.remove_lone_gs,
+                self.remove_whitelines,
+            )
+            self.terminal.newline(
+                "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
+            )
+        else:
+            self.terminal.newline("!!! Compute failed !!! > No file is selected\n\n")
 
 
 if __name__ == "__main__":

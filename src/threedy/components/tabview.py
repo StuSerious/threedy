@@ -10,6 +10,7 @@ class Tabview(ctk.CTkTabview):
         self.grid(
             row=0,
             column=1,
+            columnspan=2,
             padx=PADDING["medium"],
             pady=PADDING["none"],
             sticky="nsew",
@@ -21,7 +22,13 @@ class Tabview(ctk.CTkTabview):
         self.add("CSV Tools")
 
         # setup tabs
-        self.tab("G-Code Tools").grid_columnconfigure(0, weight=1)
+        self.tab("G-Code Tools").grid_columnconfigure(
+            (
+                0,
+                1,
+            ),
+            weight=1,
+        )
 
         # defaults
         self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
@@ -36,7 +43,7 @@ class Tabview(ctk.CTkTabview):
         )
         self.remove_comments_switch.grid(
             row=0,
-            column=0,
+            column=1,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",
@@ -52,7 +59,7 @@ class Tabview(ctk.CTkTabview):
         )
         self.remove_mcodes_switch.grid(
             row=1,
-            column=0,
+            column=1,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",
@@ -68,12 +75,12 @@ class Tabview(ctk.CTkTabview):
         )
         self.remove_fecodes_switch.grid(
             row=2,
-            column=0,
+            column=1,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",
         )
-        
+
         # remove non trafel G-Codes (keep only G0 & G1 moves)
         self.remove_nontravel_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
@@ -84,11 +91,28 @@ class Tabview(ctk.CTkTabview):
         )
         self.remove_nontravel_switch.grid(
             row=3,
-            column=0,
+            column=1,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",
         )
+
+        # remove lonely G1s
+        self.remove_lone_gs_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Remove lines with lonely G0/G1s",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_lone_gs_switch.grid(
+            row=4,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
+
         # rm whitelines
         self.remove_whitelines_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
@@ -98,8 +122,8 @@ class Tabview(ctk.CTkTabview):
             offvalue=False,
         )
         self.remove_whitelines_switch.grid(
-            row=4,
-            column=0,
+            row=5,
+            column=1,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",

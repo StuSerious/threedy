@@ -13,6 +13,7 @@ def process_file_contents(
     remove_mcodes=False,
     remove_fecodes=False,
     remove_nontravel=False,
+    remove_lone_gs=False,
     remove_whitelines=False,
 ):
     timer = time.process_time()
@@ -33,6 +34,11 @@ def process_file_contents(
     if remove_nontravel:
         file_contents = re.sub(
             RE_PATTERNS["rm-nontravel"], "", file_contents, flags=re.MULTILINE
+        )
+
+    if remove_lone_gs:
+        file_contents = re.sub(
+            RE_PATTERNS["rm-lone-gs"], "", file_contents, flags=re.MULTILINE
         )
 
     if remove_whitelines:
