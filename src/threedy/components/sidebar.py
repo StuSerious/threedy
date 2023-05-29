@@ -6,12 +6,10 @@ class Sidebar(ctk.CTkFrame):
     def __init__(self, parent, import_event, export_event, **kwargs):
         super().__init__(master=parent, **kwargs)
 
-        # defaults
-        self.normal_font = ctk.CTkFont(
-            family=FONT, size=FONT_SIZE, weight=FONT_WEIGHT[0]
-        )
+        # utils
         self.import_event = import_event
         self.export_event = export_event
+        self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
 
         # grid layout
         self.grid(row=0, rowspan=5, column=0, sticky="nsew")

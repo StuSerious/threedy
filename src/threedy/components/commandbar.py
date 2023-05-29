@@ -7,9 +7,7 @@ class Commandbar(ctk.CTkFrame):
         super().__init__(master=parent, **kwargs)
         self.compute_event = compute_event
 
-        self.normal_font = ctk.CTkFont(
-            family=FONT, size=FONT_SIZE, weight=FONT_WEIGHT[0]
-        )
+        self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
         # grid layout
         self.grid(row=4, column=1, columnspan=4, sticky="nsew")
         self.grid_columnconfigure(0, weight=1)

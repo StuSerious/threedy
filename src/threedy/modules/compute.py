@@ -4,6 +4,8 @@
 import re  # hate that I have to do this
 import time
 
+from modules.settings import *
+
 
 def process_file_contents(
     file_contents,

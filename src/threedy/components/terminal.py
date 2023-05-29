@@ -20,7 +20,9 @@ class Terminal(ctk.CTkTextbox):
     # line insertion method
     def newline(self, line):
         self.now = datetime.now().strftime("%H:%M:%S")
+
         self.configure(state="normal")
         self.insert("0.0", f"$ {self.now} >   {line}")
         self.configure(state="disabled")
+
         print(line)
