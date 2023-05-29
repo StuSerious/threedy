@@ -11,6 +11,10 @@ FONT = "Calibri"
 FONT_SIZE = 14
 FONT_WEIGHT = ("normal", "bold")
 
+# terminal
+TERMINAL_BG_COLOR = "#000000"
+TERMINAL_TEXT_COLOR = "#90cf00"
+
 # styling
 PADDING_M = 10
 STYLING = {"gap": 0.5, "corner-radius": 5}
