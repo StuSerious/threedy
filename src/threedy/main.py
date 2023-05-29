@@ -225,15 +225,19 @@ class ThreedyGUI(ctk.CTk):
         self.remove_m_codes = self.remove_m_codes_switch.get()
         self.insert_spacing = self.insert_spacing_switch.get()
         self.remove_empty_lines = self.remove_empty_lines_switch.get()
+
         self.terminal_newline("Vars OK. Compute started...\n\n")
-        self.file_contents = process_file_contents(
+
+        self.file_contents, self.compute_time_taken = process_file_contents(
             self.file_contents,
             self.remove_comments,
             self.remove_m_codes,
             self.insert_spacing,
             self.remove_empty_lines,
         )
-        self.terminal_newline("Compute done!\n\n")
+        self.terminal_newline(
+            "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
+        )
 
     # export modified file
     def export_file(self):

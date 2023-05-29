@@ -2,6 +2,7 @@
 # *                                         compute module                                       * #
 # ------------------------------------------------------------------------------------------------ #
 import re  # hate that I have to do this
+import time
 
 
 def process_file_contents(
@@ -11,6 +12,8 @@ def process_file_contents(
     insert_space=False,
     remove_empty_lines=False,
 ):
+    time_start = time.time()
+
     if remove_comments:
         comment_pattern = r".*;.*$"
         file_contents = re.sub(comment_pattern, "", file_contents, flags=re.MULTILINE)
@@ -31,4 +34,7 @@ def process_file_contents(
             empty_line_pattern, "", file_contents, flags=re.MULTILINE
         )
 
-    return file_contents
+    time_finish = time.time()
+    time_taken = time_finish - time_start
+
+    return file_contents, time_taken
