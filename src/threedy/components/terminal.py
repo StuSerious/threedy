@@ -23,3 +23,4 @@ class Terminal(ctk.CTkTextbox):
         self.configure(state="normal")
         self.insert("0.0", f"$ {self.now} >   {line}")
         self.configure(state="disabled")
+        print(line)

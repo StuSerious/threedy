@@ -6,10 +6,6 @@ class Tabview(ctk.CTkTabview):
     def __init__(self, parent, **kwargs):
         super().__init__(master=parent, **kwargs)
 
-        # defaults
-        self.normal_font = ctk.CTkFont(
-            family=FONT, size=FONT_SIZE, weight=FONT_WEIGHT[0]
-        )
         # setup layout
         self.grid(
             row=0,
@@ -26,6 +22,11 @@ class Tabview(ctk.CTkTabview):
 
         # setup tabs
         self.tab("G-Code Tools").grid_columnconfigure(0, weight=1)
+
+        # defaults
+        self.normal_font = ctk.CTkFont(
+            family=FONT, size=FONT_SIZE, weight=FONT_WEIGHT[0]
+        )
 
         # rm comments
         self.remove_comments_switch = ctk.CTkSwitch(

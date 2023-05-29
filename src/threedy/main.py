@@ -11,12 +11,11 @@ from modules.settings import *
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+        # start in dark mode
         ctk.set_appearance_mode("dark")
-        self.normal_font = ctk.CTkFont(
-            family=FONT, size=FONT_SIZE, weight=FONT_WEIGHT[0]
-        )
+
         # setup window
-        self.geometry(f"{APP_SIZE[0]}x{APP_SIZE[1]}")
+        self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
         self.iconbitmap("src/threedy/resources/logo.ico")
         self.title("threedy")
 
@@ -42,7 +41,7 @@ class App(ctk.CTk):
         # setup commandbar
         self.commandbar = Commandbar(self, self.on_compute, fg_color="#242424")
 
-        # on startup configuration
+        # startup defaults
         self.sidebar.select_theme_optionmenu.set("System")
         self.sidebar.scaling_factor_optionmenu.set("100%")
         self.terminal.newline("Welcome! To begin, please select a file.")
@@ -54,7 +53,6 @@ class App(ctk.CTk):
 
     def on_file_export(self):
         self.focused_tab = self.tabview.focused_tab()
-        print(self.focused_tab)
         export_file_dialog(self.focused_tab, self.file_contents)
         self.terminal.newline("File exported successfully!\n\n")
 
