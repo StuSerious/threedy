@@ -1,5 +1,4 @@
 import customtkinter as ctk
-
 from modules.compute import process_file_contents
 from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
@@ -14,7 +13,7 @@ class ThreedyGUI(ctk.CTk):
         )
         # setup - window
         self.geometry(f"{APP_SIZE[0]}x{APP_SIZE[1]}")
-        self.iconbitmap("resources/logo.ico")
+        self.iconbitmap("src/threedy/resources/logo.ico")
         self.title("threedy")
         self.grid_rowconfigure((0, 1, 2), weight=1)
         self.grid_columnconfigure((1, 2), weight=1)
