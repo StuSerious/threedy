@@ -12,7 +12,7 @@ def process_file_contents(
     insert_space=False,
     remove_empty_lines=False,
 ):
-    time_start = time.time()
+    timer = time.process_time()
 
     if remove_comments:
         comment_pattern = r".*;.*$"
@@ -34,7 +34,6 @@ def process_file_contents(
             empty_line_pattern, "", file_contents, flags=re.MULTILINE
         )
 
-    time_finish = time.time()
-    time_taken = time_finish - time_start
+    elapsed_time = time.process_time() - timer
 
-    return file_contents, time_taken
+    return file_contents, elapsed_time
