@@ -58,22 +58,37 @@ class Tabview(ctk.CTkTabview):
             sticky="W",
         )
 
-        # ins spacing
-        self.insert_spacing_switch = ctk.CTkSwitch(
+        # rm FE-Codes
+        self.remove_fecodes_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
-            text="Insert Spacing",
+            text="Remove F/E-Codes",
             font=self.normal_font,
             onvalue=True,
             offvalue=False,
         )
-        self.insert_spacing_switch.grid(
+        self.remove_fecodes_switch.grid(
             row=2,
             column=0,
             padx=PADDING["medium"],
             pady=PADDING["medium"],
             sticky="W",
         )
-
+        
+        # remove non trafel G-Codes (keep only G0 & G1 moves)
+        self.remove_nontravel_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Keep only G0 & G1 moves",
+            font=self.normal_font,
+            onvalue=True,
+            offvalue=False,
+        )
+        self.remove_nontravel_switch.grid(
+            row=3,
+            column=0,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="W",
+        )
         # rm whitelines
         self.remove_whitelines_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
@@ -83,7 +98,7 @@ class Tabview(ctk.CTkTabview):
             offvalue=False,
         )
         self.remove_whitelines_switch.grid(
-            row=3,
+            row=4,
             column=0,
             padx=PADDING["medium"],
             pady=PADDING["medium"],

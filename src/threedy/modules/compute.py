@@ -11,7 +11,8 @@ def process_file_contents(
     file_contents,
     remove_comments=False,
     remove_mcodes=False,
-    insert_space=False,
+    remove_fecodes=False,
+    remove_nontravel=False,
     remove_whitelines=False,
 ):
     timer = time.process_time()
@@ -26,8 +27,13 @@ def process_file_contents(
             RE_PATTERNS["rm-mcodes"], "", file_contents, flags=re.MULTILINE
         )
 
-    if insert_space:
-        file_contents = re.sub(RE_PATTERNS["rm-whitelines"], r"\1 \2", file_contents)
+    if remove_fecodes:
+        file_contents = re.sub(RE_PATTERNS["rm-fecodes"], "", file_contents)
+
+    if remove_nontravel:
+        file_contents = re.sub(
+            RE_PATTERNS["rm-nontravel"], "", file_contents, flags=re.MULTILINE
+        )
 
     if remove_whitelines:
         file_contents = re.sub(

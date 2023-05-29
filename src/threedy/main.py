@@ -60,7 +60,8 @@ class App(ctk.CTk):
     def on_compute(self):
         self.remove_comments = self.tabview.remove_comments_switch.get()
         self.remove_mcodes = self.tabview.remove_mcodes_switch.get()
-        self.insert_spacing = self.tabview.insert_spacing_switch.get()
+        self.remove_fecodes = self.tabview.remove_fecodes_switch.get()
+        self.remove_nontravel = self.tabview.remove_nontravel_switch.get()
         self.remove_whitelines = self.tabview.remove_whitelines_switch.get()
 
         self.terminal.newline("Vars OK. Compute started...\n\n")
@@ -69,7 +70,8 @@ class App(ctk.CTk):
             self.file_contents,
             self.remove_comments,
             self.remove_mcodes,
-            self.insert_spacing,
+            self.remove_fecodes,
+            self.remove_nontravel,
             self.remove_whitelines,
         )
         self.terminal.newline(
