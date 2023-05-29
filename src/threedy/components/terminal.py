@@ -13,7 +13,7 @@ class Terminal(ctk.CTkTextbox):
             row=1,
             column=1,
             padx=PADDING["medium"],
-            pady=(PADDING["medium"], PADDING["none"]),
+            pady=PADDING["medium"],
             sticky="nsew",
         )
 

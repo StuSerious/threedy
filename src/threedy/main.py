@@ -39,7 +39,7 @@ class App(ctk.CTk):
         )
 
         # setup commandbar
-        self.commandbar = Commandbar(self, self.on_compute, fg_color="#242424")
+        self.commandbar = Commandbar(self, self.on_compute, corner_radius=0)
 
         # startup defaults
         self.sidebar.select_theme_optionmenu.set("System")
