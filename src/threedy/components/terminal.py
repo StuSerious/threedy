@@ -11,12 +11,10 @@ class Terminal(ctk.CTkTextbox):
         # configure layout
         self.grid(
             row=1,
-            rowspan=2,
             column=1,
-            columnspan=4,
             padx=PADDING_M,
             pady=(PADDING_M, 0),
-            sticky="NSEW",
+            sticky="nsew",
         )
 
     # line insertion method

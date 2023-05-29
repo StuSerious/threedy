@@ -12,8 +12,8 @@ class Commandbar(ctk.CTkFrame):
         )
         # grid layout
         self.grid(row=4, column=1, columnspan=4, sticky="nsew")
-        self.grid_columnconfigure(0, weight=6)
-        self.grid_columnconfigure(1, weight=2)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=0)
 
         # setup commandbar
         self.cli_entry = ctk.CTkEntry(
@@ -26,7 +26,7 @@ class Commandbar(ctk.CTkFrame):
             column=0,
             padx=(PADDING_M, 0),
             pady=PADDING_M,
-            sticky="NSEW",
+            sticky="nsew",
         )
 
         # compute button

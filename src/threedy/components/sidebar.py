@@ -14,9 +14,9 @@ class Sidebar(ctk.CTkFrame):
         )
         self.import_event = import_event
         self.export_event = export_event
-        
+
         # grid layout
-        self.grid(row=0, rowspan=4, column=0, sticky="nsew")
+        self.grid(row=0, rowspan=5, column=0, sticky="nsew")
         self.grid_rowconfigure(4, weight=1)
 
         # threedy text logo

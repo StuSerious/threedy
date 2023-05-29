@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import customtkinter as ctk
 from components.commandbar import Commandbar
 from components.sidebar import Sidebar
@@ -21,14 +19,12 @@ class App(ctk.CTk):
         self.geometry(f"{APP_SIZE[0]}x{APP_SIZE[1]}")
         self.iconbitmap("src/threedy/resources/logo.ico")
         self.title("threedy")
-        self.grid_rowconfigure((0, 1, 2), weight=1)
-        self.grid_columnconfigure((1, 2), weight=1)
-        self.grid_columnconfigure(0, weight=0)
 
-        # setup terminal
-        self.terminal = Terminal(
-            self, fg_color=TERMINAL_BG_COLOR, text_color=TERMINAL_TEXT_COLOR
-        )
+        # setup grid
+        self.grid_rowconfigure(0, weight=4)
+        self.grid_rowconfigure(1, weight=0)
+        self.grid_columnconfigure(0, weight=0)
+        self.grid_columnconfigure(1, weight=1)
 
         # setup sidebar
         self.sidebar = Sidebar(
@@ -38,8 +34,13 @@ class App(ctk.CTk):
         # setup tabview
         self.tabview = Tabview(self)
 
-        # setup tabview
-        self.commandbar = Commandbar(self, self.on_compute)
+        # setup terminal
+        self.terminal = Terminal(
+            self, fg_color=TERMINAL_BG_COLOR, text_color=TERMINAL_TEXT_COLOR
+        )
+
+        # setup commandbar
+        self.commandbar = Commandbar(self, self.on_compute, fg_color="#242424")
 
         # startup defaults
         self.sidebar.select_theme_optionmenu.set("System")

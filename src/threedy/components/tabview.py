@@ -13,11 +13,9 @@ class Tabview(ctk.CTkTabview):
         # setup layout
         self.grid(
             row=0,
-            rowspan=1,
             column=1,
-            columnspan=3,
-            padx=(PADDING_M),
-            pady=0,
+            padx=PADDING_M,
+            pady=NO_PADDING,
             sticky="nsew",
         )
         self.grid_rowconfigure(3, weight=1)
