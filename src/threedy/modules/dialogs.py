@@ -12,7 +12,7 @@ def select_file_dialog():
     )
     if file_path:
         try:
-            with open(file_path, 'r') as file:
+            with open(file_path, "r") as file:
                 file_contents = file.read()
             return file_contents, file_path
         except FileNotFoundError:
@@ -25,7 +25,7 @@ def select_file_dialog():
 
 # --------------------------------------- export file logic -------------------------------------- #
 def export_file_dialog(current_tab, file_contents):
-    if current_tab == "Ansys Prep":
+    if current_tab == "G-Code Tools":
         extension = ".gcode"
     elif current_tab == "CSV Tools":
         extension = ".csv"
