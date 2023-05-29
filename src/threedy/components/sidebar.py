@@ -1,6 +1,4 @@
 import customtkinter as ctk
-from components.tabview import Tabview
-from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
 
 
