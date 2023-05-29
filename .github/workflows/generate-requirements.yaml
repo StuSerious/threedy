@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - "src/**"
+
+permissions: read-all|write-all
+
 jobs:
   build:
     runs-on: ubuntu-latest
