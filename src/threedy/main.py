@@ -237,6 +237,7 @@ class ThreedyGUI(ctk.CTk):
     def export_file(self):
         self.current_tab = self.tabview.get()
         export_file_dialog(self.current_tab, self.file_contents)
+        self.terminal.insert("0.0", "File exported successfully!\n\n")
 
     # apply appearence
     def change_appearance_mode_event(self, new_appearance_mode: str):

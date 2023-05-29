@@ -30,6 +30,5 @@ def process_file_contents(
         file_contents = re.sub(
             empty_line_pattern, "", file_contents, flags=re.MULTILINE
         )
-    print("compute done")
 
     return file_contents
