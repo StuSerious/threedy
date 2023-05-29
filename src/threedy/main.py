@@ -29,7 +29,7 @@ class ThreedyGUI(ctk.CTk):
             pady=(PADDING_M, 0),
             sticky="NSEW",
         )
-        self.terminal.insert("0.0", "Welcome! To begin please select a file.\n\n")
+        self.terminal.insert("0.0", "Welcome! To begin please select a file.")
 
         # setup - sidebar
         self.sidebar = ctk.CTkFrame(self, corner_radius=0)
