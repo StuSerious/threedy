@@ -26,7 +26,6 @@ class Sidebar(ctk.CTkFrame):
             font=ctk.CTkFont(family=FONT, size=35, weight="bold"),
         )
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
-        print()
 
         # select file button
         self.select_file_button = ctk.CTkButton(

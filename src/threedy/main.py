@@ -42,7 +42,7 @@ class App(ctk.CTk):
         # setup commandbar
         self.commandbar = Commandbar(self, self.on_compute, fg_color="#242424")
 
-        # startup defaults
+        # on startup configuration
         self.sidebar.select_theme_optionmenu.set("System")
         self.sidebar.scaling_factor_optionmenu.set("100%")
         self.terminal.newline("Welcome! To begin, please select a file.")

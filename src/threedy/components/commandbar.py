@@ -24,8 +24,8 @@ class Commandbar(ctk.CTkFrame):
         self.cli_entry.grid(
             row=0,
             column=0,
-            padx=(PADDING_M, 0),
-            pady=PADDING_M,
+            padx=(PADDING["medium"], PADDING["none"]),
+            pady=PADDING["medium"],
             sticky="nsew",
         )
 
@@ -37,7 +37,11 @@ class Commandbar(ctk.CTkFrame):
             command=self.compute_changes,
         )
         self.compute_button.grid(
-            row=0, column=1, padx=PADDING_M, pady=PADDING_M, sticky="NSEW"
+            row=0,
+            column=1,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
+            sticky="NSEW",
         )
 
     def compute_changes(self):

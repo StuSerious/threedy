@@ -1,5 +1,5 @@
 # size
-APP_SIZE = (900, 600)
+APP_SIZE = (1280, 720)
 IS_RESIZEABLE = False
 
 # grid
@@ -16,8 +16,7 @@ TERMINAL_BG_COLOR = "#000000"
 TERMINAL_TEXT_COLOR = "#90cf00"
 
 # styling
-NO_PADDING = 0
-PADDING_M = 10
+PADDING = {"none": 0, "medium": 10, "large": 20}
 STYLING = {"gap": 0.5, "corner-radius": 5}
 
 # colors

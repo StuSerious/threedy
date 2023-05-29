@@ -12,8 +12,8 @@ class Terminal(ctk.CTkTextbox):
         self.grid(
             row=1,
             column=1,
-            padx=PADDING_M,
-            pady=(PADDING_M, 0),
+            padx=PADDING["medium"],
+            pady=(PADDING["medium"], PADDING["none"]),
             sticky="nsew",
         )
 

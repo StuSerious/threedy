@@ -14,8 +14,8 @@ class Tabview(ctk.CTkTabview):
         self.grid(
             row=0,
             column=1,
-            padx=PADDING_M,
-            pady=NO_PADDING,
+            padx=PADDING["medium"],
+            pady=PADDING["none"],
             sticky="nsew",
         )
         self.grid_rowconfigure(3, weight=1)
@@ -38,8 +38,8 @@ class Tabview(ctk.CTkTabview):
         self.remove_comments_switch.grid(
             row=0,
             column=0,
-            padx=PADDING_M,
-            pady=PADDING_M,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
             sticky="W",
         )
 
@@ -54,8 +54,8 @@ class Tabview(ctk.CTkTabview):
         self.remove_m_codes_switch.grid(
             row=1,
             column=0,
-            padx=PADDING_M,
-            pady=PADDING_M,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
             sticky="W",
         )
 
@@ -70,8 +70,8 @@ class Tabview(ctk.CTkTabview):
         self.insert_spacing_switch.grid(
             row=2,
             column=0,
-            padx=PADDING_M,
-            pady=PADDING_M,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
             sticky="W",
         )
 
@@ -86,8 +86,8 @@ class Tabview(ctk.CTkTabview):
         self.remove_empty_lines_switch.grid(
             row=3,
             column=0,
-            padx=PADDING_M,
-            pady=PADDING_M,
+            padx=PADDING["medium"],
+            pady=PADDING["medium"],
             sticky="W",
         )
 
