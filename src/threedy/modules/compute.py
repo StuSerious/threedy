@@ -10,30 +10,28 @@ from modules.settings import *
 def process_file_contents(
     file_contents,
     remove_comments=False,
-    remove_m_codes=False,
+    remove_mcodes=False,
     insert_space=False,
-    remove_empty_lines=False,
+    remove_whitelines=False,
 ):
     timer = time.process_time()
 
     if remove_comments:
-        comment_pattern = r".*;.*$"
-        file_contents = re.sub(comment_pattern, "", file_contents, flags=re.MULTILINE)
-
-    if remove_m_codes:
-        remove_m_codes_pattern = r"^.*\bM\d+\b.*$\n?"
         file_contents = re.sub(
-            remove_m_codes_pattern, "", file_contents, flags=re.MULTILINE
+            RE_PATTERNS["rm-comments"], "", file_contents, flags=re.MULTILINE
+        )
+
+    if remove_mcodes:
+        file_contents = re.sub(
+            RE_PATTERNS["rm-mcodes"], "", file_contents, flags=re.MULTILINE
         )
 
     if insert_space:
-        insert_space_pattern = r"([A-Za-z])(\d)"
-        file_contents = re.sub(insert_space_pattern, r"\1 \2", file_contents)
+        file_contents = re.sub(RE_PATTERNS["rm-whitelines"], r"\1 \2", file_contents)
 
-    if remove_empty_lines:
-        empty_line_pattern = r"^\s*$\n?"
+    if remove_whitelines:
         file_contents = re.sub(
-            empty_line_pattern, "", file_contents, flags=re.MULTILINE
+            RE_PATTERNS["rm-whitelines"], "", file_contents, flags=re.MULTILINE
         )
 
     elapsed_time = time.process_time() - timer

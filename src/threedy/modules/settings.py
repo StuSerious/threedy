@@ -13,3 +13,8 @@ TERMINAL_BG_COLOR = "#000000"
 TERMINAL_TEXT_COLOR = "#90cf00"
 
 # patterns
+RE_PATTERNS = {
+    "rm-comments": r".*;.*$",
+    "rm-mcodes": r"^.*\bM\d+\b.*$\n?",
+    "rm-whitelines": r"^\s*$\n?",
+}

@@ -43,14 +43,14 @@ class Tabview(ctk.CTkTabview):
         )
 
         # rm M-Codes
-        self.remove_m_codes_switch = ctk.CTkSwitch(
+        self.remove_mcodes_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
             text="Remove M-Codes",
             font=self.normal_font,
             onvalue=True,
             offvalue=False,
         )
-        self.remove_m_codes_switch.grid(
+        self.remove_mcodes_switch.grid(
             row=1,
             column=0,
             padx=PADDING["medium"],
@@ -75,14 +75,14 @@ class Tabview(ctk.CTkTabview):
         )
 
         # rm whitelines
-        self.remove_empty_lines_switch = ctk.CTkSwitch(
+        self.remove_whitelines_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
             text="Remove Empty Lines",
             font=self.normal_font,
             onvalue=True,
             offvalue=False,
         )
-        self.remove_empty_lines_switch.grid(
+        self.remove_whitelines_switch.grid(
             row=3,
             column=0,
             padx=PADDING["medium"],
