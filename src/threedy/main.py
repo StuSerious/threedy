@@ -59,10 +59,10 @@ class App(ctk.CTk):
 
     # compute changes
     def on_compute(self):
-        self.remove_comments = self.remove_comments_switch.get()
-        self.remove_m_codes = self.remove_m_codes_switch.get()
-        self.insert_spacing = self.insert_spacing_switch.get()
-        self.remove_empty_lines = self.remove_empty_lines_switch.get()
+        self.remove_comments = self.tabview.remove_comments_switch.get()
+        self.remove_m_codes = self.tabview.remove_m_codes_switch.get()
+        self.insert_spacing = self.tabview.insert_spacing_switch.get()
+        self.remove_empty_lines = self.tabview.remove_empty_lines_switch.get()
 
         self.terminal.newline("Vars OK. Compute started...\n\n")
 
