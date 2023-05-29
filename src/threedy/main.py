@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import customtkinter as ctk
 from modules.compute import process_file_contents
 from modules.dialogs import export_file_dialog, select_file_dialog
@@ -29,7 +31,7 @@ class ThreedyGUI(ctk.CTk):
             pady=(PADDING_M, 0),
             sticky="NSEW",
         )
-        self.terminal.insert("0.0", "Welcome! To begin, please select a file.")
+        self.terminal_newline("Welcome! To begin, please select a file.")
 
         # setup - sidebar
         self.sidebar = ctk.CTkFrame(self, corner_radius=0)
@@ -205,7 +207,7 @@ class ThreedyGUI(ctk.CTk):
 
         # setup - defaults
         self.cli_entry.configure(state="disabled")
-
+        self.terminal.configure(state="disabled")
         self.appearance_mode_optionmenu.set("System")
         self.scaling_optionmenu.set("100%")
 
@@ -215,7 +217,7 @@ class ThreedyGUI(ctk.CTk):
     # select and load file
     def select_file(self):
         self.file_contents, self.file_path = select_file_dialog()
-        self.terminal.insert("0.0", "File selected: " + self.file_path + "\n\n")
+        self.terminal_newline("File selected: " + self.file_path + "\n\n")
 
     # compute changes
     def compute_changes(self):
@@ -223,7 +225,7 @@ class ThreedyGUI(ctk.CTk):
         self.remove_m_codes = self.remove_m_codes_switch.get()
         self.insert_spacing = self.insert_spacing_switch.get()
         self.remove_empty_lines = self.remove_empty_lines_switch.get()
-        self.terminal.insert("0.0", "Vars OK. Compute started...\n\n")
+        self.terminal_newline("Vars OK. Compute started...\n\n")
         self.file_contents = process_file_contents(
             self.file_contents,
             self.remove_comments,
@@ -231,13 +233,13 @@ class ThreedyGUI(ctk.CTk):
             self.insert_spacing,
             self.remove_empty_lines,
         )
-        self.terminal.insert("0.0", "Compute done!\n\n")
+        self.terminal_newline("Compute done!\n\n")
 
     # export modified file
     def export_file(self):
         self.current_tab = self.tabview.get()
         export_file_dialog(self.current_tab, self.file_contents)
-        self.terminal.insert("0.0", "File exported successfully!\n\n")
+        self.terminal_newline("File exported successfully!\n\n")
 
     # apply appearence
     def change_appearance_mode_event(self, new_appearance_mode: str):
@@ -248,8 +250,12 @@ class ThreedyGUI(ctk.CTk):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         ctk.set_widget_scaling(new_scaling_float)
 
-    def testcmd():
-        print("ok")
+    # terminal insert
+    def terminal_newline(self, terminal_newline):
+        self.now = datetime.now().strftime("%H:%M:%S")
+        self.terminal.configure(state="normal")
+        self.terminal.insert("0.0", f"$ {self.now} > {terminal_newline}")
+        self.terminal.configure(state="disabled")
 
 
 if __name__ == "__main__":
