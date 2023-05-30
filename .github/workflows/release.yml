@@ -8,8 +8,22 @@ permissions: write-all
 
 jobs:
   publish_release:
-    name: Publish Release and Upload Asset
-    runs-on: ubuntu-latest
+    name: Publish Release and Upload Assets
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            asset_name: threedy_linux
+            asset_pattern: "threedy"
+          - os: macos-latest
+            asset_name: threedy_macos
+            asset_pattern: "threedy"
+          - os: windows-latest
+            asset_name: threedy_windows.exe
+            asset_pattern: "threedy.exe"
 
     steps:
       - name: Checkout repository
@@ -27,7 +41,7 @@ jobs:
         id: customtkinter
         run: |
           CUSTOM_TKINTER_LOCATION=$(pip show customtkinter | grep -i '^location:' | awk '{print $2}')
-          echo "::set-output name=location::$CUSTOM_TKINTER_LOCATION"
+          echo "${CUSTOM_TKINTER_LOCATION}/customtkinter=$CUSTOM_TKINTER_LOCATION/customtkinter" >> $GITHUB_STATE
 
       - name: Build Binary
         run: |
@@ -39,7 +53,7 @@ jobs:
             --add-data "src/threedy/components:components/" \
             --add-data "src/threedy/modules:modules/" \
             "src/threedy/main.py"
-            echo "::set-output name=asset_path::$(find ./dist -name 'threedy' -type f)"
+          echo "$(find ./dist -name '${{ matrix.asset_pattern }}' -type f)=$($(find ./dist -name '${{ matrix.asset_pattern }}' -type f))" >> $GITHUB_STATE
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
@@ -47,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./dist/threedy
-          asset_name: threedy.exe
+          asset_path: ${{ env.GITHUB_STATE }}
+          asset_name: ${{ matrix.asset_name }}
           asset_content_type: application/octet-stream
