@@ -8,6 +8,17 @@ from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
 
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller"""
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -16,7 +27,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        self.iconbitmap("src//threedy//resources//logo.ico")
+        # self.iconbitmap("src//threedy//resources//logo.ico")
         self.title("threedy")
 
         # setup grid
