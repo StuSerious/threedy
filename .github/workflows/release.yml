@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish_release:
+    name: Publish Release and Upload Asset
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Determine customtkinter installation path
+        id: customtkinter
+        run: |
+          CUSTOM_TKINTER_LOCATION=$(pip show customtkinter | grep -i '^location:' | awk '{print $2}')
+          echo "::set-output name=location::$CUSTOM_TKINTER_LOCATION"
+
+      - name: Build Binary
+        run: |
+          pyinstaller --noconfirm --onefile --windowed \
+            --icon "src/threedy/resources/logo.ico" \
+            --name "threedy" \
+            --clean \
+            --add-data "${{ steps.customtkinter.outputs.location }};customtkinter/" \
+            --add-data "src/threedy/components;components/" \
+            --add-data "src/threedy/modules;modules/" \
+            "src/threedy/main.py"
+            echo "::set-output name=asset_path::$(find ./dist -name 'threedy' -type f)"
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ needs.pyinstaller.outputs.asset_path }}
+          asset_name: threedy
+          asset_content_type: application/octet-stream
