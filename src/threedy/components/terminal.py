@@ -22,7 +22,7 @@ class Terminal(ctk.CTkTextbox):
         self.now = datetime.now().strftime("%H:%M:%S")
 
         self.configure(state="normal")
-        self.insert("0.0", f"$ {self.now} >   {line}")
+        self.insert("0.0", f"$ {self.now} -> {line}")
         self.configure(state="disabled")
 
         print(line)

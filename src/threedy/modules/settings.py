@@ -9,6 +9,8 @@ FONT_SIZE = 14
 PADDING = {"none": 0, "medium": 10, "large": 20}
 
 # terminal
+TERMINAL_FONT = "Fira Code"
+TERMINAL_FONT_SIZE = 13
 TERMINAL_BG_COLOR = "#000000"
 TERMINAL_TEXT_COLOR = "#90cf00"
 

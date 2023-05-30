@@ -27,19 +27,35 @@ class App(ctk.CTk):
 
         # setup sidebar
         self.sidebar = Sidebar(
-            self, self.on_file_select, self.on_file_export, corner_radius=0
+            self,
+            self.on_file_select,
+            self.on_file_export,
+            corner_radius=0,
         )
 
         # setup tabview
-        self.tabview = Tabview(self, self.on_select_all)
+        self.tabview = Tabview(
+            self,
+            self.on_select_all,
+        )
 
         # setup terminal
         self.terminal = Terminal(
-            self, fg_color=TERMINAL_BG_COLOR, text_color=TERMINAL_TEXT_COLOR
+            self,
+            fg_color=TERMINAL_BG_COLOR,
+            text_color=TERMINAL_TEXT_COLOR,
+            font=ctk.CTkFont(
+                family=TERMINAL_FONT,
+                size=TERMINAL_FONT_SIZE,
+            ),
         )
 
         # setup commandbar
-        self.commandbar = Commandbar(self, self.on_compute, corner_radius=0)
+        self.commandbar = Commandbar(
+            self,
+            self.on_compute,
+            corner_radius=0,
+        )
 
         # startup defaults
         self.sidebar.select_theme_optionmenu.set("System")
