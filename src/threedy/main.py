@@ -16,7 +16,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        # self.iconbitmap("src/threedy/resources/logo.ico")
+        self.iconbitmap("src//threedy//resources//logo.ico")
         self.title("threedy")
 
         # setup grid
@@ -60,8 +60,8 @@ class App(ctk.CTk):
         # startup defaults
         self.sidebar.select_theme_optionmenu.set("System")
         self.sidebar.scaling_factor_optionmenu.set("100%")
-        self.terminal.newline("Welcome! To begin, please select a file.")
         self.commandbar.cli_entry.configure(state="disabled")
+        self.terminal.newline("Welcome! To begin, please select a file.")
 
     def on_file_select(self):
         self.file_path, self.file_contents = select_file_dialog()
