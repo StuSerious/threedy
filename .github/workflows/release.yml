@@ -33,9 +33,9 @@ jobs:
             --icon "src/threedy/resources/logo.ico" \
             --name "threedy" \
             --clean \
-            --add-data "${{ steps.customtkinter.outputs.location }}/customtkinter;customtkinter/" \
-            --add-data "src/threedy/components;components/" \
-            --add-data "src/threedy/modules;modules/" \
+            --add-data "${{ steps.customtkinter.outputs.location }}/customtkinter:customtkinter/" \
+            --add-data "src/threedy/components:components/" \
+            --add-data "src/threedy/modules:modules/" \
             "src/threedy/main.py"
             echo "::set-output name=asset_path::$(find ./dist -name 'threedy' -type f)"
 
