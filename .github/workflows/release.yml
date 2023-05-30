@@ -5,6 +5,7 @@ on:
     types: [created]
 
 jobs:
+  permissions: write-all
   publish_release:
     name: Publish Release and Upload Asset
     runs-on: ubuntu-latest
