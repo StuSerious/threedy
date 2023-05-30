@@ -31,7 +31,7 @@ class App(ctk.CTk):
         )
 
         # setup tabview
-        self.tabview = Tabview(self)
+        self.tabview = Tabview(self, self.on_select_all)
 
         # setup terminal
         self.terminal = Terminal(
@@ -55,6 +55,14 @@ class App(ctk.CTk):
         self.focused_tab = self.tabview.focused_tab()
         export_file_dialog(self.focused_tab, self.file_contents)
         self.terminal.newline("File exported successfully!\n\n")
+
+    def on_select_all(self):
+        self.tabview.remove_comments_switch.select()
+        self.tabview.remove_mcodes_switch.select()
+        self.tabview.remove_fecodes_switch.select()
+        self.tabview.remove_nontravel_switch.select()
+        self.tabview.remove_lone_gs_switch.select()
+        self.tabview.remove_coordname_switch.select()
 
     # compute changes
     def on_compute(self):

@@ -3,8 +3,11 @@ from modules.settings import *
 
 
 class Tabview(ctk.CTkTabview):
-    def __init__(self, parent, **kwargs):
+    def __init__(self, parent, select_all_event, **kwargs):
         super().__init__(master=parent, **kwargs)
+        # defaults
+        self.select_all_event = select_all_event
+        self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
 
         # setup layout
         self.grid(
@@ -30,9 +33,12 @@ class Tabview(ctk.CTkTabview):
             weight=1,
         )
 
-        # defaults
-        self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
-
+        self.select_all_gcode = ctk.CTkCheckBox(
+            self.tab("G-Code Tools"),
+            text="Select All",
+            command=self.enable_all_switches,
+        )
+        self.select_all_gcode.grid(row=0, column=0)
         # rm comments
         self.remove_comments_switch = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
@@ -128,6 +134,9 @@ class Tabview(ctk.CTkTabview):
             pady=PADDING["medium"],
             sticky="W",
         )
+
+    def enable_all_switches(self):
+        self.select_all_event()
 
     def focused_tab(self):
         return self.get()
