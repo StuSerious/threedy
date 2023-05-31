@@ -26,20 +26,20 @@ jobs:
       - name: Determine customtkinter installation path
         id: customtkinter
         run: |
-          CUSTOM_TKINTER_LOCATION=$(pip show customtkinter | grep -i '^location:' | awk '{print $2}')
-          echo "::set-output name=location::$CUSTOM_TKINTER_LOCATION"
+          $location = (pip show customtkinter | Select-String -Pattern '^Location:' | ForEach-Object { $_.Line -replace 'Location: ' }).Trim()
+          echo "::set-output name=location::$location"
 
       - name: Build Binary
         run: |
-          pyinstaller --noconfirm --onefile --windowed \
-            --icon "src/threedy/resources/logo.ico" \
-            --name "threedy" \
-            --clean \
-            --add-data "${{ steps.customtkinter.outputs.location }}/customtkinter;customtkinter/" \
-            --add-data "src/threedy/components;components/" \
-            --add-data "src/threedy/modules;modules/" \
+          pyinstaller --noconfirm --onefile --windowed `
+            --icon "src/threedy/resources/logo.ico" `
+            --name "threedy" `
+            --clean `
+            --add-data "${{ steps.customtkinter.outputs.location }}/customtkinter;customtkinter/" `
+            --add-data "src/threedy/components;components/" `
+            --add-data "src/threedy/modules;modules/" `
             "src/threedy/main.py"
-            echo "::set-output name=asset_path::$(find ./dist -name 'threedy' -type f)"
+          echo "::set-output name=asset_path::$(Get-ChildItem -Path ./dist -Filter 'threedy' -Recurse | Select-Object -First 1)"
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
