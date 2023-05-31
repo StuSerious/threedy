@@ -82,7 +82,7 @@ class App(ctk.CTk):
         self.terminal.newline("File exported successfully!\n\n")
 
     def on_compute(self):
-        print(resource_path("src\\threedy\\resources\\logo.ico"))
+        print()
 
 
 if __name__ == "__main__":
