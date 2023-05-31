@@ -1,3 +1,6 @@
+import os
+import sys
+
 import customtkinter as ctk
 from components.commandbar import Commandbar
 from components.sidebar import Sidebar
@@ -34,7 +37,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        # self.iconbitmap("src//threedy//resources//logo.ico")
+        self.iconbitmap(resource_path("src\\threedy\\resources\\logo.ico"))
         self.title("threedy")
 
         # setup grid
@@ -79,7 +82,7 @@ class App(ctk.CTk):
         self.terminal.newline("File exported successfully!\n\n")
 
     def on_compute(self):
-        print()
+        print(resource_path("src\\threedy\\resources\\logo.ico"))
 
 
 if __name__ == "__main__":
