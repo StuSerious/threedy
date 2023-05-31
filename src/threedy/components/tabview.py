@@ -35,7 +35,13 @@ class Tabview(ctk.CTkTabview):
             onvalue=True,
             offvalue=False,
         )
-        self.ansys_prep_switch.grid(row=0, column=0)
+        self.ansys_prep_switch.grid(
+            row=0,
+            column=0,
+            padx=PADDING["medium"],
+            pady=PADDING["none"],
+            sticky="w",
+        )
 
     def focused_tab(self):
         """Returns the currently selected tab
