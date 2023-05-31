@@ -1,5 +1,5 @@
 # size
-APP_SIZE = {"width": 1280, "height": 720}
+APP_SIZE = {"width": 800, "height": 500}
 
 # text
 FONT = "Calibri"

@@ -4,7 +4,7 @@ from modules.settings import *
 
 class Commandbar(ctk.CTkFrame):
     def __init__(self, parent, compute_event, **kwargs):
-        super().__init__(master=parent, **kwargs)
+        super().__init__(master=parent, corner_radius=0, **kwargs)
         self.compute_event = compute_event
 
         self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)

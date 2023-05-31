@@ -6,7 +6,12 @@ from modules.settings import *
 
 class Terminal(ctk.CTkTextbox):
     def __init__(self, parent, **kwargs):
-        super().__init__(master=parent, **kwargs)
+        super().__init__(
+            master=parent,
+            fg_color=TERMINAL_BG_COLOR,
+            text_color=TERMINAL_TEXT_COLOR,
+            **kwargs,
+        )
 
         # configure layout
         self.grid(

@@ -31,8 +31,6 @@ def resource_path(relative_path):
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        # start in dark mode
-        ctk.set_appearance_mode("dark")
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
@@ -40,8 +38,8 @@ class App(ctk.CTk):
         self.title("threedy")
 
         # setup grid
-        self.grid_rowconfigure(0, weight=4)
-        self.grid_rowconfigure(1, weight=0)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=2)
         self.grid_columnconfigure(0, weight=0)
         self.grid_columnconfigure(1, weight=1)
 
@@ -50,31 +48,22 @@ class App(ctk.CTk):
             self,
             self.on_file_select,
             self.on_file_export,
-            corner_radius=0,
         )
 
         # setup tabview
         self.tabview = Tabview(
             self,
-            self.on_select_all,
         )
 
         # setup terminal
         self.terminal = Terminal(
             self,
-            fg_color=TERMINAL_BG_COLOR,
-            text_color=TERMINAL_TEXT_COLOR,
-            font=ctk.CTkFont(
-                family=TERMINAL_FONT,
-                size=TERMINAL_FONT_SIZE,
-            ),
         )
 
         # setup commandbar
         self.commandbar = Commandbar(
             self,
             self.on_compute,
-            corner_radius=0,
         )
 
         # startup defaults
@@ -92,35 +81,8 @@ class App(ctk.CTk):
         export_file_dialog(self.focused_tab, self.file_contents)
         self.terminal.newline("File exported successfully!\n\n")
 
-    def on_select_all(self):
-        self.tabview.remove_comments_switch.select()
-        self.tabview.remove_mcodes_switch.select()
-        self.tabview.remove_fecodes_switch.select()
-        self.tabview.remove_nontravel_switch.select()
-        self.tabview.remove_lone_gs_switch.select()
-        self.tabview.remove_coordname_switch.select()
-
-    # compute changes
     def on_compute(self):
-        self.options = {
-            "remove_comments": self.tabview.remove_comments_switch,
-            "remove_mcodes": self.tabview.remove_mcodes_switch,
-            "remove_fecodes": self.tabview.remove_fecodes_switch,
-            "remove_nontravel": self.tabview.remove_nontravel_switch,
-            "remove_lone_gs": self.tabview.remove_lone_gs_switch,
-            "remove_coordname": self.tabview.remove_coordname_switch,
-        }
-
-        if self.file_contents:
-            options_values = {key: switch.get() for key, switch in self.options.items()}
-            self.file_contents, self.compute_time_taken = process_file_contents(
-                self.file_contents, **options_values
-            )
-            self.terminal.newline(
-                "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
-            )
-        else:
-            self.terminal.newline("!!! Compute failed !!! > No file is selected\n\n")
+        print()
 
 
 if __name__ == "__main__":

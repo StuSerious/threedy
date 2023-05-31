@@ -3,6 +3,12 @@ from tkinter import filedialog
 
 # --------------------------------------- import file logic -------------------------------------- #
 def select_file_dialog():
+    """Opens the file dialog
+
+    Returns:
+        string: file path
+        string: file content
+    """
     file_path = filedialog.askopenfilename(
         filetypes=[
             ("G-code files", "*.gcode *.txt"),
