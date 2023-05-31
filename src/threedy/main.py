@@ -49,21 +49,18 @@ class App(ctk.CTk):
             self.on_file_select,
             self.on_file_export,
         )
-
-        # setup tabview
-        self.tabview = Tabview(
-            self,
-        )
-
-        # setup terminal
-        self.terminal = Terminal(
-            self,
-        )
-
         # setup commandbar
         self.commandbar = Commandbar(
             self,
             self.on_compute,
+        )
+        # setup terminal
+        self.terminal = Terminal(
+            self,
+        )
+        # setup tabview
+        self.tabview = Tabview(
+            self,
         )
 
         # startup defaults
