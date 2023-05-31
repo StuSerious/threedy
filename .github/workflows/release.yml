@@ -39,7 +39,8 @@ jobs:
             --add-data "src/threedy/components;components/" `
             --add-data "src/threedy/modules;modules/" `
             "src/threedy/main.py"
-          echo "::set-output name=asset_path::$(Get-ChildItem -Path ./dist -Filter 'threedy' -Recurse | Select-Object -First 1)"
+          $assetPath = (Get-ChildItem -Path . -Filter 'threedy.exe' -Recurse | Select-Object -First 1 | Resolve-Path -Relative)
+          echo "::set-output name=asset_path::$assetPath"
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
@@ -47,6 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./dist/threedy
+          asset_path: ${{ steps.build_binary.outputs.asset_path }}
           asset_name: threedy.exe
           asset_content_type: application/octet-stream
