@@ -9,8 +9,16 @@ from modules.settings import *
 
 
 # PyInstaller helper
+# https://stackoverflow.com/questions/7674790/bundling-data-files-with-pyinstaller-onefile/13790741#13790741
 def resource_path(relative_path):
-    """Get absolute path to resource, works for dev and for PyInstaller"""
+    """Get absolute path to resource, works for dev and for PyInstaller
+
+    Args:
+        relative_path (string): the relative path of the resource
+
+    Returns:
+        string: the base pass joined with the relative path
+    """
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS

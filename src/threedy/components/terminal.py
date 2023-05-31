@@ -19,6 +19,13 @@ class Terminal(ctk.CTkTextbox):
 
     # line insertion method
     def newline(self, line):
+        """Inserts a new line at the top of the terminal, pushing the existing lines down the stack.
+        Can also insert replacement patterns and f-strings.
+        This method will also add time and terminal formatting.
+
+        Args:
+            line (string): the text that will be diplayed
+        """
         self.now = datetime.now().strftime("%H:%M:%S")
 
         self.configure(state="normal")
