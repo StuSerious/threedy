@@ -29,19 +29,83 @@ class Tabview(ctk.CTkTabview):
             weight=1,
         )
 
-        self.ansys_prep_switch = ctk.CTkSwitch(
+        self.select_all_gcode = ctk.CTkSwitch(
             self.tab("G-Code Tools"),
-            text="Tabulate G-Code for Ansys",
-            onvalue=True,
-            offvalue=False,
+            text="Select All",
+            command=self.toggle_all_switches,
         )
-        self.ansys_prep_switch.grid(
-            row=0,
-            column=0,
-            padx=PADDING["medium"],
-            pady=PADDING["none"],
-            sticky="w",
-        )
+        self.select_all_gcode.place(anchor="nw")
+
+        self.gcode_switch_data = [
+            {
+                "text": "Remove Comments",
+                "variable": "remove_comments_switch",
+                "row": 0,
+                "column": 1,
+            },
+            {
+                "text": "Remove M-Codes",
+                "variable": "remove_mcodes_switch",
+                "row": 1,
+                "column": 1,
+            },
+            {
+                "text": "Remove F/E-Codes",
+                "variable": "remove_fecodes_switch",
+                "row": 2,
+                "column": 1,
+            },
+            {
+                "text": "Keep only G0 & G1 moves",
+                "variable": "remove_nontravel_switch",
+                "row": 0,
+                "column": 2,
+            },
+            {
+                "text": "Remove lines with lonely G0/G1s",
+                "variable": "remove_lone_gs_switch",
+                "row": 1,
+                "column": 2,
+            },
+            {
+                "text": "Remove coordinate names",
+                "variable": "remove_coordname_switch",
+                "row": 2,
+                "column": 2,
+            },
+        ]
+
+        for data in self.gcode_switch_data:
+            switch_variable = data["variable"]
+            switch = ctk.CTkCheckBox(
+                self.tab("G-Code Tools"),
+                text=data["text"],
+                font=self.normal_font,
+                onvalue=True,
+                offvalue=False,
+            )
+            setattr(self, switch_variable, switch)
+            switch.grid(
+                row=data["row"],
+                column=data["column"],
+                padx=PADDING["medium"],
+                pady=PADDING["medium"],
+                sticky="W",
+            )
+
+    def toggle_all_switches(self):
+        """iterates over every switch and toggles it"""
+        for data in self.gcode_switch_data:
+            switch_variable = data["variable"]
+            if isinstance(switch_variable, str):
+                # Get the actual variable object based on its name
+                switch_variable = getattr(self, switch_variable)
+            if self.select_all_gcode.get() == False:
+                switch_variable.deselect()
+                self.select_all_gcode.configure(text="Select All")
+            else:
+                switch_variable.select()
+                self.select_all_gcode.configure(text="Deselect All")
 
     def selected_tab(self):
         """Returns the currently selected tab

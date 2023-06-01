@@ -58,3 +58,19 @@
 
     def enable_all_switches(self):
         self.select_all_event()
+
+
+        
+        self.ansys_prep_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="Tabulate G-Code for Ansys",
+            onvalue=True,
+            offvalue=False,
+        )
+        self.ansys_prep_switch.grid(
+            row=0,
+            column=0,
+            padx=PADDING["medium"],
+            pady=PADDING["none"],
+            sticky="w",
+        )
