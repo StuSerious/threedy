@@ -88,8 +88,8 @@ class Tabview(ctk.CTkTabview):
             switch.grid(
                 row=data["row"],
                 column=data["column"],
-                padx=PADDING["medium"],
-                pady=PADDING["medium"],
+                padx=PADDING["small"],
+                pady=PADDING["small"],
                 sticky="W",
             )
 
