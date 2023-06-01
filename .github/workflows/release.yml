@@ -36,7 +36,7 @@ jobs:
             --name "threedy" `
             --clean `
             --add-data "${{ steps.customtkinter.outputs.location }}/customtkinter;customtkinter/" `
-            --add-data "src/threedy/components;components/" `
+            --add-data "src/threedy/interface;interface/" `
             --add-data "src/threedy/modules;modules/" `
             "src/threedy/main.py"
 

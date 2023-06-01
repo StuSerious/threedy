@@ -2,10 +2,10 @@ import os
 import sys
 
 import customtkinter as ctk
-from components.commandbar import Commandbar
-from components.sidebar import Sidebar
-from components.tabview import Tabview
-from components.terminal import Terminal
+from interface.commandbar import Commandbar
+from interface.sidebar import Sidebar
+from interface.tabview import Tabview
+from interface.terminal import Terminal
 from modules.compute import process_file_contents
 from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
