@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from interface.terminal import Terminal
 from modules.settings import *
 
 
@@ -7,7 +8,7 @@ class Tabview(ctk.CTkTabview):
         super().__init__(master=parent, **kwargs)
         # defaults
         self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
-
+        self.terminal = Terminal
         # setup layout
         self.grid(
             row=0,
@@ -19,22 +20,42 @@ class Tabview(ctk.CTkTabview):
         )
         self.grid_rowconfigure(3, weight=1)
 
-        # add tabs
+        # setup G-Code tab
         self.add("G-Code Tools")
-        self.add("CSV Tools")
-
-        # setup tabs
         self.tab("G-Code Tools").grid_columnconfigure(
-            (0, 1),
+            0,
             weight=1,
         )
+        self.tab("G-Code Tools").grid_columnconfigure(
+            (1, 2),
+            weight=2,
+        )
 
-        self.select_all_gcode = ctk.CTkSwitch(
+        # select all switch
+        self.select_all_gcode_label = ctk.CTkLabel(
             self.tab("G-Code Tools"),
-            text="Select All",
+            text="Select All:",
+            font=ctk.CTkFont(family=FONT, size=FONT_SIZE, weight="bold"),
+        )
+        self.select_all_gcode_label.grid(
+            row=0,
+            column=0,
+            padx=PADDING["medium"],
+            pady=(PADDING["none"], PADDING["none"]),
+            sticky="nw",
+        )
+        self.select_all_gcode_switch = ctk.CTkSwitch(
+            self.tab("G-Code Tools"),
+            text="",
             command=self.toggle_all_switches,
         )
-        self.select_all_gcode.place(anchor="nw")
+        self.select_all_gcode_switch.grid(
+            row=1,
+            column=0,
+            padx=PADDING["medium"],
+            pady=(PADDING["none"], PADDING["medium"]),
+            sticky="nw",
+        )
 
         self.gcode_switch_data = [
             {
@@ -100,12 +121,13 @@ class Tabview(ctk.CTkTabview):
             if isinstance(switch_variable, str):
                 # Get the actual variable object based on its name
                 switch_variable = getattr(self, switch_variable)
-            if self.select_all_gcode.get() == False:
+            if self.select_all_gcode_switch.get() == False:
                 switch_variable.deselect()
-                self.select_all_gcode.configure(text="Select All")
+                self.select_all_gcode_label.configure(text="Select All:")
             else:
                 switch_variable.select()
-                self.select_all_gcode.configure(text="Deselect All")
+                self.select_all_gcode_label.configure(text="Deselect All:")
+        # self.terminal.newline("Selected all G-Code modifiers")
 
     def selected_tab(self):
         """Returns the currently selected tab
