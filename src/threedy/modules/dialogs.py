@@ -30,10 +30,10 @@ def select_file_dialog():
 
 
 # --------------------------------------- export file logic -------------------------------------- #
-def export_file_dialog(focused_tab, file_contents):
-    if focused_tab == "G-Code Tools":
+def export_file_dialog(selected_tab, file_contents):
+    if selected_tab == "G-Code Tools":
         extension = ".gcode"
-    elif focused_tab == "CSV Tools":
+    elif selected_tab == "CSV Tools":
         extension = ".csv"
 
     file_path = filedialog.asksaveasfilename(

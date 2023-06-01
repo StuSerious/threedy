@@ -43,7 +43,7 @@ class Tabview(ctk.CTkTabview):
             sticky="w",
         )
 
-    def focused_tab(self):
+    def selected_tab(self):
         """Returns the currently selected tab
 
         Returns:

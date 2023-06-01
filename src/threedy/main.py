@@ -67,8 +67,8 @@ class App(ctk.CTk):
         self.terminal.newline("File selected: " + self.file_path + "\n\n")
 
     def on_file_export(self):
-        self.focused_tab = self.tabview.focused_tab()
-        export_file_dialog(self.focused_tab, self.file_contents)
+        self.selected_tab = self.tabview.selected_tab()
+        export_file_dialog(self.selected_tab, self.file_contents)
         self.terminal.newline("File exported successfully!\n\n")
 
     def on_compute(self):
