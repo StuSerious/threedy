@@ -72,7 +72,27 @@ class App(ctk.CTk):
         self.terminal.newline("File exported successfully!\n\n")
 
     def on_compute(self):
-        print()
+        remove_comments = self.tabview.remove_comments_switch.get()
+        remove_mcodes = self.tabview.remove_mcodes_switch.get()
+        remove_fecodes = self.tabview.remove_fecodes_switch.get()
+        remove_nontravel = self.tabview.remove_nontravel_switch.get()
+        remove_lone_gs = self.tabview.remove_lone_gs_switch.get()
+        remove_coordname = self.tabview.remove_coordname_switch.get()
+
+        self.terminal.newline("Vars OK. Compute started...\n\n")
+
+        self.file_contents, self.compute_time_taken = process_file_contents(
+            self.file_contents,
+            remove_comments,
+            remove_mcodes,
+            remove_fecodes,
+            remove_nontravel,
+            remove_lone_gs,
+            remove_coordname,
+        )
+        self.terminal.newline(
+            "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
+        )
 
 
 if __name__ == "__main__":
