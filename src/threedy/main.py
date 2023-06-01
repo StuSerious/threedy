@@ -1,8 +1,11 @@
+import os
+import sys
+
 import customtkinter as ctk
-from components.commandbar import Commandbar
-from components.sidebar import Sidebar
-from components.tabview import Tabview
-from components.terminal import Terminal
+from interface.commandbar import Commandbar
+from interface.sidebar import Sidebar
+from interface.tabview import Tabview
+from interface.terminal import Terminal
 from modules.compute import process_file_contents
 from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
@@ -11,20 +14,10 @@ from modules.settings import *
 # PyInstaller helper
 # https://stackoverflow.com/questions/7674790/bundling-data-files-with-pyinstaller-onefile/13790741#13790741
 def resource_path(relative_path):
-    """Get absolute path to resource, works for dev and for PyInstaller
-
-    Args:
-        relative_path (string): the relative path of the resource
-
-    Returns:
-        string: the base pass joined with the relative path
-    """
-    try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
+    try:  # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
-
     return os.path.join(base_path, relative_path)
 
 
@@ -34,7 +27,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        # self.iconbitmap("src//threedy//resources//logo.ico")
+        self.iconbitmap(resource_path("src\\threedy\\resources\\logo.ico"))
         self.title("threedy")
 
         # setup grid
@@ -74,12 +67,32 @@ class App(ctk.CTk):
         self.terminal.newline("File selected: " + self.file_path + "\n\n")
 
     def on_file_export(self):
-        self.focused_tab = self.tabview.focused_tab()
-        export_file_dialog(self.focused_tab, self.file_contents)
+        self.selected_tab = self.tabview.selected_tab()
+        export_file_dialog(self.selected_tab, self.file_contents)
         self.terminal.newline("File exported successfully!\n\n")
 
     def on_compute(self):
-        print()
+        remove_comments = self.tabview.remove_comments_switch.get()
+        remove_mcodes = self.tabview.remove_mcodes_switch.get()
+        remove_fecodes = self.tabview.remove_fecodes_switch.get()
+        remove_nontravel = self.tabview.remove_nontravel_switch.get()
+        remove_lone_gs = self.tabview.remove_lone_gs_switch.get()
+        remove_coordname = self.tabview.remove_coordname_switch.get()
+
+        self.terminal.newline("Vars OK. Compute started...\n\n")
+
+        self.file_contents, self.compute_time_taken = process_file_contents(
+            self.file_contents,
+            remove_comments,
+            remove_mcodes,
+            remove_fecodes,
+            remove_nontravel,
+            remove_lone_gs,
+            remove_coordname,
+        )
+        self.terminal.newline(
+            "Compute done! Took " + f"{self.compute_time_taken}" + " seconds\n\n"
+        )
 
 
 if __name__ == "__main__":
