@@ -1,8 +1,0 @@
-class GCodeProcessor(file_contents):  
-      
-    def remove_comments(self, file_contents):
-        file_contents = re.sub(
-            RE_PATTERNS["remove_comments"], "", file_contents, flags=re.MULTILINE
-        )
-    
-        
