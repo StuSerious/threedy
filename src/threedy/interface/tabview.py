@@ -8,7 +8,6 @@ class Tabview(ctk.CTkTabview):
         super().__init__(master=parent, **kwargs)
         # defaults
         self.normal_font = ctk.CTkFont(family=FONT, size=FONT_SIZE)
-        self.terminal = Terminal
         # setup layout
         self.grid(
             row=0,
@@ -22,6 +21,7 @@ class Tabview(ctk.CTkTabview):
 
         # setup G-Code tab
         self.add("G-Code Tools")
+        self.add("Tab 2")
         self.tab("G-Code Tools").grid_columnconfigure(
             0,
             weight=1,

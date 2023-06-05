@@ -14,10 +14,7 @@ from modules.settings import *
 # PyInstaller `--onefile` helper
 # https://github.com/TomSchimansky/CustomTkinter/discussions/939
 def resource_path(relative_path):
-    base_path = getattr(
-        sys,
-        '_MEIPASS',
-        os.path.dirname(os.path.abspath(__file__)))
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
 
@@ -27,7 +24,7 @@ class App(ctk.CTk):
 
         # setup window
         self.geometry(f"{APP_SIZE['width']}x{APP_SIZE['height']}")
-        self.iconbitmap(resource_path("src\\threedy\\resources\\logo.ico"))
+        self.iconbitmap(resource_path("resources\\logo.ico"))
         self.title("threedy")
 
         # setup grid
@@ -104,6 +101,10 @@ class App(ctk.CTk):
             )
 
 
-if __name__ == "__main__":
+def main() -> None:
     threedy = App()
     threedy.mainloop()
+
+
+if __name__ == "__main__":
+    main()

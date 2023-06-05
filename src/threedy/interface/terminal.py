@@ -37,4 +37,4 @@ class Terminal(ctk.CTkTextbox):
         self.insert("0.0", f"{self.now} | $  {line}\n")
         self.configure(state="disabled")
 
-        print(line)
+        print(f"log: {line}")
