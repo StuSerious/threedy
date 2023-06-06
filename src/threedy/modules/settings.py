@@ -1,3 +1,6 @@
+# app info
+VERSION = "0.1.0-alpha.4"
+
 # size
 APP_SIZE = {"width": 900, "height": 500}
 

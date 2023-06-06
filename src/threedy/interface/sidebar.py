@@ -21,7 +21,27 @@ class Sidebar(ctk.CTkFrame):
             text="threedy",
             font=ctk.CTkFont(family=FONT, size=35, weight="bold"),
         )
-        self.logo_label.grid(row=0, column=0, padx=PADDING["large"], pady=(20, 10))
+        self.logo_label.grid(
+            row=0,
+            column=0,
+            padx=PADDING["large"],
+            pady=(20, 0),
+        )
+        # version text
+        self.version_label = ctk.CTkLabel(
+            self,
+            text=f"version {VERSION}",
+            font=ctk.CTkFont(family=FONT, size=8, slant="italic"),
+            bg_color="transparent",
+            fg_color="transparent",
+        )
+        self.version_label.grid(
+            row=1,
+            column=0,
+            padx=(0, 0),
+            pady=(0, 20),
+            sticky="n",
+        )
 
         # select file button
         self.select_file_button = ctk.CTkButton(
@@ -31,12 +51,11 @@ class Sidebar(ctk.CTkFrame):
             command=self.select_file,
         )
         self.select_file_button.grid(
-            row=1,
+            row=2,
             column=0,
             padx=PADDING["medium"],
             pady=10,
         )
-
         # export file button
         self.export_file_button = ctk.CTkButton(
             self,
@@ -45,7 +64,7 @@ class Sidebar(ctk.CTkFrame):
             command=self.export_file,
         )
         self.export_file_button.grid(
-            row=2,
+            row=3,
             column=0,
             padx=PADDING["medium"],
             pady=10,
@@ -64,7 +83,6 @@ class Sidebar(ctk.CTkFrame):
         self.select_theme_optionmenu.grid(
             row=6, column=0, padx=PADDING["medium"], pady=(0, 10)
         )
-
         # scaling selector
         self.scaling_factor_label = ctk.CTkLabel(self, text="UI Scaling:", anchor="w")
         self.scaling_factor_label.grid(row=7, column=0, padx=PADDING["medium"], pady=0)
@@ -76,6 +94,8 @@ class Sidebar(ctk.CTkFrame):
         self.scaling_factor_optionmenu.grid(
             row=8, column=0, padx=PADDING["medium"], pady=(0, 10)
         )
+
+        # TODO: settings dialog
 
     # select and load file
     def select_file(self):
