@@ -13,3 +13,7 @@ see the [wiki](https://github.com/OverNight3D/threedy/wiki) for setup and usage 
 
 always create a copy of the processed G-Code before running operations on it.\
 nothing is final and everything is subject to change.
+
+## credits
+
+icon logo: [Graphic design icons created by Freepik](https://www.flaticon.com/authors/freepik)
