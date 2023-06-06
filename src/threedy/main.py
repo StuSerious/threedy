@@ -81,7 +81,6 @@ class App(ctk.CTk):
             remove_nontravel = self.tabview.remove_nontravel_switch.get()
             remove_lone_gs = self.tabview.remove_lone_gs_switch.get()
             remove_coordname = self.tabview.remove_coordname_switch.get()
-            self.terminal.newline("COMPUTE: Switch values OK.")
 
             self.file_contents, self.compute_time_taken = process_file_contents(
                 self.file_contents,
