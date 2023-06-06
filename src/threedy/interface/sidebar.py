@@ -31,7 +31,7 @@ class Sidebar(ctk.CTkFrame):
         self.version_label = ctk.CTkLabel(
             self,
             text=f"version {VERSION}",
-            font=ctk.CTkFont(family=FONT, size=8, slant="italic"),
+            font=ctk.CTkFont(family=FONT, size=10, slant="italic"),
             bg_color="transparent",
             fg_color="transparent",
         )
