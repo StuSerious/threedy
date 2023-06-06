@@ -11,7 +11,7 @@ from modules.dialogs import export_file_dialog, select_file_dialog
 from modules.settings import *
 
 
-# PyInstaller `--onefile` helper
+# PyInstaller path helper
 # https://github.com/TomSchimansky/CustomTkinter/discussions/939
 def resource_path(relative_path):
     base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
