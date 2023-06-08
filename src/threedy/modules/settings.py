@@ -18,6 +18,7 @@ PADDING = {"none": 0, "small": 5, "medium": 10, "large": 20}
 
 FONT = "Calibri"
 FONT_SIZE = 14
+
 TERMINAL_FONT = "Fira Code"
 TERMINAL_FONT_SIZE = 13
 TERMINAL_BG_COLOR = "#000000"
