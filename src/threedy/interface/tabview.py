@@ -18,10 +18,12 @@ class Tabview(ctk.CTkTabview):
             sticky="nsew",
         )
         self.grid_rowconfigure(3, weight=1)
+        
+        # setup Ansys tab
+        self.add("Ansys Prep")
 
         # setup G-Code tab
         self.add("G-Code Tools")
-        self.add("Tab 2")
         self.tab("G-Code Tools").grid_columnconfigure(
             0,
             weight=1,
