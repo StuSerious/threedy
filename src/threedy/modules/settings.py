@@ -1,13 +1,11 @@
-# app info
+# ------------------------------------- app info ------------------------------------- #
 VERSION = "0.1.0-alpha.6"
 
-# size
+# ---------------------------------- window settings --------------------------------- #
 APP_SIZE = {
     "width": 900,
     "height": 500,
 }
-
-# styling
 PADDING = {
     "none": 0,
     "small": 5,
@@ -15,17 +13,16 @@ PADDING = {
     "large": 20,
 }
 
-# text
+# --------------------------------------- fonts -------------------------------------- #
 FONT = "Calibri"
 FONT_SIZE = 14
-
 # terminal
 TERMINAL_FONT = "Fira Code"
 TERMINAL_FONT_SIZE = 13
 TERMINAL_BG_COLOR = "#000000"
 TERMINAL_TEXT_COLOR = "#90cf00"
 
-# patterns
+# --------------------------------------- regex -------------------------------------- #
 RE_PATTERNS = {
     "remove_comments": r"\s*;.*$",
     "remove_mcodes": r"^M.*$",
