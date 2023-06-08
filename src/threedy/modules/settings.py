@@ -1,15 +1,23 @@
 # app info
-VERSION = "0.1.0-alpha.4"
+VERSION = "0.1.0-alpha.6"
 
 # size
-APP_SIZE = {"width": 900, "height": 500}
+APP_SIZE = {
+    "width": 900,
+    "height": 500,
+}
+
+# styling
+PADDING = {
+    "none": 0,
+    "small": 5,
+    "medium": 10,
+    "large": 20,
+}
 
 # text
 FONT = "Calibri"
 FONT_SIZE = 14
-
-# styling
-PADDING = {"none": 0, "small": 5, "medium": 10, "large": 20}
 
 # terminal
 TERMINAL_FONT = "Fira Code"
