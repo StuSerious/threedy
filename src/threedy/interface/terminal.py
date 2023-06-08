@@ -34,7 +34,7 @@ class Terminal(ctk.CTkTextbox):
         self.now = datetime.now().strftime("%H:%M:%S")
 
         self.configure(state="normal")
-        self.insert("0.0", f"{self.now} | $  {line}\n")
+        self.insert("0.0", f"{self.now} > {line}\n")
         self.configure(state="disabled")
 
         print(f"log: {line}")
